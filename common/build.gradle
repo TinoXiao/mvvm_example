@@ -1,0 +1,70 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.tino.version_plugin'
+}
+import com.tino.version_plugin.*
+
+android {
+    compileSdk AndroidVersion.compileSdk
+
+    defaultConfig {
+        minSdk AndroidVersion.minSdk
+        targetSdk AndroidVersion.targetSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.databinding:databinding-common:4.2.2'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    api DVersion.okhttp
+    api DVersion.logging_interceptor
+
+    api DVersion.retrofit
+    api DVersion.converter_gson
+    api DVersion.retrofit2_rxjava2_adapter
+
+    api DVersion.room_runtime
+    kapt DVersion.room_compiler
+    api DVersion.room_ktx
+    api DVersion.room_paging
+    api DVersion.room_rxjava2
+
+    api DVersion.glide
+    kapt DVersion.glide_compiler
+    kapt DVersion.lifecycle_compiler
+
+    api DVersion.paging
+
+    api DVersion.navigation_fragment
+    api DVersion.navigation_ui_ktx
+
+    api DVersion.fragment_ktx
+
+    api project(":base")
+}

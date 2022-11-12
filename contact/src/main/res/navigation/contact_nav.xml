@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/contact_nav"
+    app:startDestination="@id/contact_contactfragment">
+
+    <fragment
+        android:id="@+id/contact_contactfragment"
+        android:name="com.tino.contact.ui.ContactFragment"
+        android:label="通讯录" />
+</navigation>

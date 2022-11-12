@@ -1,0 +1,30 @@
+import javax.naming.Binding
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url 'https://www.jitpack.io' }
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "KotlinMvvm"
+include ':app'
+include ':base'
+include ':common'
+include ':user'
+include ':weather'
+include ':music'
+include ':contact'
+includeBuild("version_plugin")

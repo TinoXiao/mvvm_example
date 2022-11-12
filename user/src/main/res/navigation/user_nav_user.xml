@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_nav_user"
+    app:startDestination="@id/user_loginfragment">
+
+    <fragment
+        android:id="@+id/user_loginfragment"
+        android:name="com.tino.user.login.LoginFragment"
+        android:label="登录"
+        tools:layout="@layout/user_fragment_login">
+        <action
+            android:id="@+id/user_action_user_loginfragment_to_user_registerfragment"
+            app:destination="@id/user_registerfragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/user_registerfragment"
+        android:name="com.tino.user.register.RegisterFragment"
+        android:label="注册"
+        tools:layout="@layout/user_fragment_register" />
+</navigation>

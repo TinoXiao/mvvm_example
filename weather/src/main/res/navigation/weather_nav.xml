@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weather_nav"
+    app:startDestination="@id/weather_weatherfragment">
+
+    <fragment
+        android:id="@+id/weather_weatherfragment"
+        android:name="com.tino.weather.ui.WeatherFragment"
+        android:label="天气" >
+        <action
+            android:id="@+id/weather_action_weather_weatherfragment_to_weather_futurefragment"
+            app:destination="@id/weather_futurefragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/weather_futurefragment"
+        android:name="com.tino.weather.ui.FutureFragment"
+        android:label="未来天气" />
+
+
+</navigation>

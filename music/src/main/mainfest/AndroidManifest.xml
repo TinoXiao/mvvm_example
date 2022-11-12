@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tino.music">
+
+    <application
+        android:theme="@style/Theme.KotlinMvvm">
+
+        <meta-data
+            android:name="com.tino.music.MusicApplication"
+            android:value="com.tino.music.MusicApplication" />
+    </application>
+
+</manifest>

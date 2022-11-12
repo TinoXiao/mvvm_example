@@ -1,0 +1,128 @@
+/**
+ * 全局统一配置
+ */
+ext {
+
+    isDebug = false
+
+    /**
+     * Android SDK Version
+     */
+    minSdk = 21
+    targetSdk = 30
+    compileSdk = 32
+    versionCode = 1
+    versionName = "1.0"
+
+
+    /**
+     * 版本统一管理
+     */
+    versions = [
+            androidSupportSdkVersion: "28.0.0",
+            constraintlayoutVersion : "1.1.3",
+            runnerVersion           : "1.1.0-alpha4",
+            espressoVersion         : "3.1.0-alpha4",
+            junitVersion            : "4.12",
+            annotationsVersion      : "28.0.0",
+            appcompatVersion        : "1.0.0-beta01",
+            designVersion           : "1.0.0-beta01",
+
+            multidexVersion         : "1.0.2",
+
+            butterknifeVersion      : "10.1.0",
+
+            arouterApiVersion       : "1.4.1",
+            arouterCompilerVersion  : "1.2.2",
+            arouterAnnotationVersion: "1.0.4"
+    ]
+
+    dependencies = [
+            //阿里路由
+            "arouter_api"         : "com.alibaba:arouter-api:${versions["arouterApiVersion"]}",
+            "arouter_compiler"    : "com.alibaba:arouter-compiler:${versions["arouterCompilerVersion"]}",
+            "arouter_annotation"  : "com.alibaba:arouter-annotation:${versions["arouterAnnotationVersion"]}",
+    ]
+
+    /**
+     * module默认配置
+     */
+    setDefaultModule = {
+        extension ->
+            extension.apply plugin:'org.jetbrains.kotlin.android'
+            extension.apply plugin:'kotlin-kapt'
+
+            //开启Module debug设置applicationId
+            if(isDebug){
+                extension.apply plugin:'com.android.application'
+                extension.android.defaultConfig.applicationId "com.tino.$extension.name"
+            }
+            else
+                extension.apply plugin:'com.android.library'
+
+            setDefaultKapt extension.kapt
+            setDefaultAndroid extension.android
+
+            setDefaultSourceSets extension.android.sourceSets
+
+            extension.android.resourcePrefix = "${extension.name}_"
+    }
+
+    /**
+     * module的SourceSets
+     */
+    setDefaultSourceSets = {
+        extension ->
+            extension.main {
+                assets {
+                    srcDirs 'src\\main\\mainfest\\assets', 'src\\main\\assets'
+                }
+                if(isDebug){
+                    manifest.srcFile 'src/main/AndroidManifest.xml'
+                } else {
+                    manifest.srcFile 'src/main/mainfest/AndroidManifest.xml'
+                }
+        }
+    }
+
+    setDefaultKapt = {
+        extension ->
+            extension.arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+    }
+
+    setDefaultAndroid = {
+        extension ->
+            extension.compileSdk compileSdk
+
+            extension.compileOptions {
+                sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+            }
+
+            extension.kotlinOptions {
+                jvmTarget = '1.8'
+            }
+
+            extension.dataBinding {
+                enabled = true
+            }
+
+            extension.viewBinding {
+                enabled = true
+            }
+
+            setDefaultConfig extension.defaultConfig
+    }
+
+    setDefaultConfig = {
+        extension ->
+            extension.minSdk minSdk
+            extension.targetSdk targetSdk
+            extension.versionCode versionCode
+            extension.versionName versionName
+            extension.testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+}

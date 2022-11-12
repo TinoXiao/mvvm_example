@@ -1,0 +1,57 @@
+apply plugin: 'kotlin'
+apply plugin: 'java-gradle-plugin'
+
+buildscript {
+    repositories {
+        google()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+        gradlePluginPortal()
+        mavenCentral()
+    }
+
+    dependencies {
+        // 因为使用的 Kotlin 需要需要添加 Kotlin 插件,需要和主工程对应，不然就出现两个版本了
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"
+    }
+
+}
+
+repositories {
+    maven { url 'https://jitpack.io' }
+    maven { url 'https://maven.aliyun.com/nexus/content/repositories/releases/'}
+    maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+    maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
+
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+gradlePlugin {
+    plugins {
+        version {
+            // 在 app 模块需要通过 id 引用这个插件
+            id = 'com.tino.version_plugin'
+            // 实现这个插件的类的路径
+            implementationClass = 'com.tino.version_plugin.VersionPlugin'
+        }
+    }
+}
