@@ -1,4 +1,4 @@
-# GitTest
+# mvvm-example
 Jetpack全家桶实战  
 使用kotlin编写，涵盖了ViewModel+LiveData+DataBinding+Room+Paging等组件的使用  
 
